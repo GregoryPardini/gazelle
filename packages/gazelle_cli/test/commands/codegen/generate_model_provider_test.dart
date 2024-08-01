@@ -73,6 +73,17 @@ class UserModelType extends GazelleModelType<User> {
       "createdAt": value.createdAt?.toIso8601String(),
     };
   }
+
+  @override
+  Map<String, String> get modelAttributes {
+    return {
+      "id": "String",
+      "username": "String",
+      "posts": "List<Post>",
+      "metadata": "Map<String, String>",
+      "createdAt": "DateTime",
+    };
+  }
 }
 """;
 const _expectedPostModelType = """
@@ -99,6 +110,16 @@ class PostModelType extends GazelleModelType<Post> {
       "content": value.content,
       "user": value.user != null ? UserModelType().toJson(value.user!) : null,
       "tags": value.tags.map((item) => item).toList(),
+    };
+  }
+
+  @override
+  Map<String, String> get modelAttributes {
+    return {
+      "id": "String",
+      "content": "String",
+      "user": "User",
+      "tags": "List<String>",
     };
   }
 }

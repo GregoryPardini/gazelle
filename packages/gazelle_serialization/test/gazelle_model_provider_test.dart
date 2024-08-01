@@ -23,6 +23,11 @@ class _TestModelType extends GazelleModelType<_TestEntity> {
       "test": value.test,
     };
   }
+
+  @override
+  Map<String, String> get modelAttributes => {
+        "test": "String",
+      };
 }
 
 class _TestModelProvider extends GazelleModelProvider {

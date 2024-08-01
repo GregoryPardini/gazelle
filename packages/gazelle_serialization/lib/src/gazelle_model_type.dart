@@ -8,4 +8,7 @@ abstract class GazelleModelType<T> {
 
   /// Transforms [json] into a [T] model instance.
   T fromJson(Map<String, dynamic> json);
+
+  /// Returns a map of model attributes with their respective types.
+  Map<String, String> get modelAttributes;
 }

@@ -181,6 +181,7 @@ cb.Class _generateModelTypeClass({
       ..methods.addAll([
         _generateFromJsonMethod(classDefinition),
         _generateToJsonMethod(classDefinition),
+        _generateAttributesMapMethod(classDefinition),
       ]),
   );
 
@@ -246,6 +247,23 @@ cb.Method _generateToJsonMethod(ClassDefinition classDefinition) {
         """));
       });
   });
+}
+
+cb.Method _generateAttributesMapMethod(ClassDefinition classDefinition) {
+  final attributeMapCode = StringBuffer();
+
+  attributeMapCode.writeln('return {');
+  for (var prop in classDefinition.properties) {
+    attributeMapCode.writeln('"${prop.name}": "${prop.type.name}",');
+  }
+  attributeMapCode.writeln('};');
+
+  return cb.Method((method) => method
+    ..annotations.add(cb.refer("override"))
+    ..returns = cb.refer("Map<String, String>")
+    ..name = "modelAttributes"
+    ..type = cb.MethodType.getter
+    ..body = cb.Code(attributeMapCode.toString()));
 }
 
 String _generateFromJsonParameter(ClassConstructorParameter param) {

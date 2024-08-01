@@ -30,6 +30,13 @@ class UserModelType extends GazelleModelType<User> {
       "createdAt": value.createdAt.toIso8601String(),
     };
   }
+
+  @override
+  Map<String, String> get modelAttributes => {
+        "id": "String",
+        "name": "String",
+        "createdAt": "DateTime",
+      };
 }
 
 class ExampleModelProvider extends GazelleModelProvider {

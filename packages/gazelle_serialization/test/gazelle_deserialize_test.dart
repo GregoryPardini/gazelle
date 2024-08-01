@@ -37,6 +37,14 @@ class _TestModelType extends GazelleModelType<_Test> {
       'dayOfBirth': value.dayOfBirth.toIso8601String(),
     };
   }
+
+  @override
+  Map<String, String> get modelAttributes => {
+        'name': 'String',
+        'age': 'int',
+        'balance': 'double',
+        'dayOfBirth': 'DateTime',
+      };
 }
 
 class _TestModelProvider extends GazelleModelProvider {
