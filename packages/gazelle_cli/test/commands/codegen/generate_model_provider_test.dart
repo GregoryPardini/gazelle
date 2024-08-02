@@ -79,9 +79,9 @@ class UserModelType extends GazelleModelType<User> {
     return {
       "id": "String",
       "username": "String",
-      "posts": "List<Post>",
+      "posts": "List<Post>?",
       "metadata": "Map<String, String>",
-      "createdAt": "DateTime",
+      "createdAt": "DateTime?",
     };
   }
 }
@@ -118,7 +118,7 @@ class PostModelType extends GazelleModelType<Post> {
     return {
       "id": "String",
       "content": "String",
-      "user": "User",
+      "user": "User?",
       "tags": "List<String>",
     };
   }

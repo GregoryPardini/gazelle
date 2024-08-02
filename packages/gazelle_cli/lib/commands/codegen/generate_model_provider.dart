@@ -254,7 +254,11 @@ cb.Method _generateAttributesMapMethod(ClassDefinition classDefinition) {
 
   attributeMapCode.writeln('return {');
   for (var prop in classDefinition.properties) {
-    attributeMapCode.writeln('"${prop.name}": "${prop.type.name}",');
+    String typeName = prop.type.name;
+    if (prop.type.isNullable) {
+      typeName += '?';
+    }
+    attributeMapCode.writeln('"${prop.name}": "$typeName",');
   }
   attributeMapCode.writeln('};');
 
